@@ -1,0 +1,108 @@
+import { Phone, Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+
+const LOGO = "https://www.friggp2c.com/wp-content/uploads/2023/10/MicrosoftTeams-image.png";
+
+const NAV_LINKS = [
+  { label: "Services", href: "#services" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Our Experts", href: "#experts" },
+  { label: "Results", href: "#results" },
+  { label: "Contact", href: "#contact" },
+];
+
+export function SiteNav() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <>
+      {/* Urgency banner */}
+      <div className="w-full bg-primary text-white text-[13px] font-medium">
+        <div className="max-w-7xl mx-auto px-4 h-10 flex items-center justify-center gap-3 text-center">
+          <span className="hidden sm:inline">
+            PIPEDA enforcement is active. AIDA is advancing. Canadian businesses face fines up to CAD $100,000 — without warning.
+          </span>
+          <span className="sm:hidden">PIPEDA & AIDA enforcement is active in Canada.</span>
+          <a href="#problem" className="text-accent hover:underline whitespace-nowrap">
+            Learn more →
+          </a>
+        </div>
+      </div>
+
+      {/* Sticky nav */}
+      <nav
+        className={`sticky top-0 z-40 bg-white border-b border-border transition-shadow ${
+          scrolled ? "shadow-[0_2px_16px_rgba(27,42,107,0.08)]" : ""
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+          <a href="#top" className="flex items-center bg-white">
+            <img src={LOGO} alt="Frigg Business Solutions" className="h-11 w-auto object-contain" />
+          </a>
+
+          <div className="hidden lg:flex items-center gap-8">
+            {NAV_LINKS.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                className="text-[14px] font-medium text-primary hover:text-accent transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4">
+            <a
+              href="tel:+19052619123"
+              className="hidden md:inline-flex items-center gap-2 text-[13px] font-medium text-primary hover:text-accent"
+            >
+              <Phone size={14} className="text-accent" />
+              +1 (905) 261-9123
+            </a>
+            <a href="#contact" className="btn-primary !py-2.5 !px-4 !text-[13px]">
+              Book Free Assessment
+            </a>
+            <button
+              onClick={() => setOpen((v) => !v)}
+              className="lg:hidden text-primary"
+              aria-label="Menu"
+            >
+              {open ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+        </div>
+
+        {open && (
+          <div className="lg:hidden border-t border-border bg-white">
+            <div className="flex flex-col px-4 py-3">
+              {NAV_LINKS.map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="py-2 text-[14px] font-medium text-primary"
+                >
+                  {l.label}
+                </a>
+              ))}
+              <a
+                href="tel:+19052619123"
+                className="py-2 text-[13px] font-medium text-primary flex items-center gap-2"
+              >
+                <Phone size={14} className="text-accent" /> +1 (905) 261-9123
+              </a>
+            </div>
+          </div>
+        )}
+      </nav>
+    </>
+  );
+}
