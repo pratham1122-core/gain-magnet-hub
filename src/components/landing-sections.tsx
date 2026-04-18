@@ -39,7 +39,7 @@ export function HeroSection() {
 
           {/* FIX 2 — H1 42px mobile / 68px desktop. FIX 4A — animated underline on "non-compliant". */}
           <h1 className="text-[42px] md:text-[68px] font-bold text-primary mt-5 leading-[1.1]">
-            You might already be <span className="hl-word">non-compliant</span> in Canada.
+            You might already be <span className="hl-word">Non-Compliant</span> in Canada.
           </h1>
 
           <p className="text-[19px] text-muted-foreground mt-4 leading-relaxed">
