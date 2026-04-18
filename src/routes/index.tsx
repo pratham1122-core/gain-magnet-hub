@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsAppFloat, MobileStickyBar } from "@/components/floating";
+import { LeadPopup } from "@/components/lead-popup";
+import { SectionDivider } from "@/components/section-divider";
 import { useReveal } from "@/hooks/use-reveal";
 import {
   HeroSection,
@@ -23,6 +25,18 @@ const META_TITLE =
 const META_DESC =
   "Frigg Business Solutions helps Canadian businesses achieve PIPEDA, AIDA, PHIPA, SOC 2, and ISO 27001 compliance. Led by CISSP and ISO 27001 certified experts. Book your free 30-minute assessment.";
 
+/*
+  BEFORE LAUNCH CHECKLIST:
+  1. Replace Calendly URL: search 'calendly.com/frigg' — replace with real link
+  2. Add GA4 tag: search INSERT GA4 MEASUREMENT ID
+  3. Add GTM tag: search INSERT GTM CONTAINER ID
+  4. Add LinkedIn tag: search INSERT LINKEDIN PARTNER ID
+  5. Replace social media links in footer
+  6. Connect popup form to CRM: search CONNECT FORM SUBMISSION
+  7. Replace James, Paula, Tina bios with real details
+  8. Verify all team photo URLs load without 403 errors
+*/
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -43,21 +57,17 @@ function Index() {
   const ref = useReveal();
   return (
     <div ref={ref} className="bg-background">
-      {/*
-        Analytics placeholders — uncomment & populate before launch:
-        [INSERT GA4 MEASUREMENT ID]
-        [INSERT GTM CONTAINER ID]
-        [INSERT LINKEDIN PARTNER ID]
-      */}
       <SiteNav />
       <main>
         <HeroSection />
         <TrustBar />
+        <SectionDivider />
         <ProblemSection />
         <CtaStrip1 />
         <ServicesSection />
         <CtaStrip2 />
         <ExpertsSection />
+        <SectionDivider />
         <ResultsSection />
         <TestimonialsSection />
         <CtaStrip3 />
@@ -67,6 +77,7 @@ function Index() {
       <SiteFooter />
       <WhatsAppFloat />
       <MobileStickyBar />
+      <LeadPopup />
     </div>
   );
 }
