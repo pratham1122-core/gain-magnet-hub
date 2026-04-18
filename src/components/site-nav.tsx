@@ -16,16 +16,20 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <>
-      {/* Urgency banner */}
-      <div className="w-full bg-primary text-white text-[13px] font-medium">
-        <div className="max-w-7xl mx-auto px-4 h-10 flex items-center justify-center gap-3 text-center">
+    <header className="fixed top-0 left-0 right-0 z-40">
+      {/* Urgency banner — fixed 44px desktop, ~64px mobile (wraps) */}
+      <div
+        className="w-full bg-primary text-white text-[13px] font-medium flex items-center"
+        style={{ minHeight: "var(--banner-h)" }}
+      >
+        <div className="max-w-7xl mx-auto px-4 py-2 w-full flex items-center justify-center gap-3 text-center">
           <span className="hidden sm:inline">
             PIPEDA enforcement is active. AIDA is advancing. Canadian businesses face fines up to CAD $100,000 — without warning.
           </span>
@@ -36,13 +40,14 @@ export function SiteNav() {
         </div>
       </div>
 
-      {/* Sticky nav */}
+      {/* Sticky nav — solid white, shadow appears after 10px scroll */}
       <nav
-        className={`sticky top-0 z-40 bg-white border-b border-border transition-shadow ${
+        className={`bg-white border-b border-border transition-shadow ${
           scrolled ? "shadow-[0_2px_16px_rgba(27,42,107,0.08)]" : ""
         }`}
+        style={{ height: "var(--nav-h)" }}
       >
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between gap-4">
           <a href="#top" className="flex items-center bg-white">
             <img src={LOGO} alt="Frigg Business Solutions" className="h-11 w-auto object-contain" />
           </a>
@@ -52,7 +57,7 @@ export function SiteNav() {
               <a
                 key={l.label}
                 href={l.href}
-                className="text-[14px] font-medium text-primary hover:text-accent transition-colors"
+                className="text-[15px] font-medium text-primary hover:text-accent transition-colors"
               >
                 {l.label}
               </a>
@@ -62,12 +67,12 @@ export function SiteNav() {
           <div className="flex items-center gap-4">
             <a
               href="tel:+19052619123"
-              className="hidden md:inline-flex items-center gap-2 text-[13px] font-medium text-primary hover:text-accent"
+              className="hidden md:inline-flex items-center gap-2 text-[14px] font-medium text-primary hover:text-accent"
             >
               <Phone size={14} className="text-accent" />
-              +1 (905) 261-9123
+              <span>+1 (905) 261-9123</span>
             </a>
-            <a href="#contact" className="btn-primary !py-2.5 !px-4 !text-[13px]">
+            <a href="#contact" className="btn-primary !py-2.5 !px-4 !text-[14px]">
               Book Free Assessment
             </a>
             <button
@@ -88,21 +93,22 @@ export function SiteNav() {
                   key={l.label}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="py-2 text-[14px] font-medium text-primary"
+                  className="py-2 text-[15px] font-medium text-primary"
                 >
                   {l.label}
                 </a>
               ))}
               <a
                 href="tel:+19052619123"
-                className="py-2 text-[13px] font-medium text-primary flex items-center gap-2"
+                className="py-2 text-[14px] font-medium text-primary flex items-center gap-2"
               >
-                <Phone size={14} className="text-accent" /> +1 (905) 261-9123
+                <Phone size={14} className="text-accent" />
+                <span>+1 (905) 261-9123</span>
               </a>
             </div>
           </div>
         )}
       </nav>
-    </>
+    </header>
   );
 }
