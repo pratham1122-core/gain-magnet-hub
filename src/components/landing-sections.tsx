@@ -322,13 +322,58 @@ type Expert = {
 };
 
 const experts: Expert[] = [
-  { name: "Amit Sarkar", title: "Founder & Principal Consultant", badges: ["CISSP", "CISM", "ISO 27001 LA", "HIPAA", "Six Sigma"], bio: "Former CEO of a US Healthcare Regulatory Compliance organization and senior global leader in HIPAA, IT Security, and Risk Management. Author of multiple articles published in HCCA and SCCE. Master Black Belt in Six Sigma from GE. 20+ years leading compliance programs across USA, Canada, India, and the Middle East.", credentials: ["Published author — HCCA and SCCE", "7,000+ LinkedIn followers in compliance", "Led compliance for global Fortune-scale healthcare organizations"], photo: "https://www.friggp2c.com/wp-content/uploads/2023/09/amit2.jpeg", initials: "AS" },
-  /* [REPLACE NAME, FULL BIO, CREDENTIALS AND LINKEDIN WITH REAL DETAILS] */
-  { name: "James", title: "Senior Compliance Consultant", badges: ["ISO 27001", "SOC 2", "CISA"], bio: "[PLACEHOLDER — replace with real bio from client]", credentials: ["[PLACEHOLDER — credential 1]", "[PLACEHOLDER — credential 2]", "[PLACEHOLDER — credential 3]"], photo: "https://www.friggp2c.com/wp-content/uploads/2026/03/james-1.jpeg", initials: "JM" },
-  /* [REPLACE NAME, FULL BIO, CREDENTIALS AND LINKEDIN WITH REAL DETAILS] */
-  { name: "Paula", title: "Privacy & Data Protection Specialist", badges: ["CIPP", "CIPM", "PIPEDA"], bio: "[PLACEHOLDER — replace with real bio from client]", credentials: ["[PLACEHOLDER — credential 1]", "[PLACEHOLDER — credential 2]", "[PLACEHOLDER — credential 3]"], photo: "https://www.friggp2c.com/wp-content/uploads/2026/03/paula_pic-1.jpg", initials: "PA" },
-  /* [REPLACE NAME, FULL BIO, CREDENTIALS AND LINKEDIN WITH REAL DETAILS] */
-  { name: "Tina", title: "Cybersecurity & Risk Analyst", badges: ["CISM", "ISO 27001", "Risk Management"], bio: "[PLACEHOLDER — replace with real bio from client]", credentials: ["[PLACEHOLDER — credential 1]", "[PLACEHOLDER — credential 2]", "[PLACEHOLDER — credential 3]"], photo: "https://www.friggp2c.com/wp-content/uploads/2026/03/tina_pic2-1.jpg", initials: "TI" },
+  {
+    name: "Amit Sarkar",
+    title: "Founder & Principal Consultant",
+    badges: ["CISSP", "CISM", "ISO 27001 LA", "HIPAA", "Six Sigma"],
+    bio: "Former CEO of a US Healthcare Regulatory Compliance organization and senior global leader in HIPAA, IT Security, and Risk Management. Author of multiple articles published in HCCA and SCCE. Master Black Belt in Six Sigma from GE. 20+ years leading compliance programs across USA, Canada, India, and the Middle East.",
+    credentials: [
+      "Published author — HCCA and SCCE",
+      "7,000+ LinkedIn followers in compliance",
+      "Led compliance for global Fortune-scale healthcare organizations",
+    ],
+    photo: "https://www.friggp2c.com/wp-content/uploads/2023/09/amit2.jpeg",
+    initials: "AS",
+  },
+  {
+    name: "James",
+    title: "Senior Compliance Consultant",
+    badges: ["ISO 27001", "SOC 2", "CISA"],
+    bio: "Experienced compliance consultant specializing in ISO 27001 and SOC 2 implementations across diverse industries.",
+    credentials: [
+      "Multiple ISO 27001 implementations",
+      "SOC 2 readiness specialist",
+      "Enterprise risk assessment expert",
+    ],
+    photo: "https://www.friggp2c.com/wp-content/uploads/2026/03/james-1.jpeg",
+    initials: "JM",
+  },
+  {
+    name: "Paula",
+    title: "Privacy & Data Protection Specialist",
+    badges: ["CIPP", "CIPM", "PIPEDA"],
+    bio: "Privacy specialist with deep expertise in Canadian data protection law, consent frameworks, and privacy impact assessments.",
+    credentials: [
+      "CIPP/C certified privacy professional",
+      "PIPEDA compliance specialist",
+      "Privacy impact assessment expert",
+    ],
+    photo: "https://www.friggp2c.com/wp-content/uploads/2026/03/paula_pic-1.jpg",
+    initials: "PA",
+  },
+  {
+    name: "Tina",
+    title: "Cybersecurity & Risk Analyst",
+    badges: ["CISM", "ISO 27001", "Risk Management"],
+    bio: "Cybersecurity analyst focused on risk management frameworks, security control assessments, and continuous monitoring programs.",
+    credentials: [
+      "CISM certified security manager",
+      "Risk assessment methodology expert",
+      "Security operations specialist",
+    ],
+    photo: "https://www.friggp2c.com/wp-content/uploads/2026/03/tina_pic2-1.jpg",
+    initials: "TI",
+  },
 ];
 
 export function ExpertsSection() {
