@@ -77,13 +77,14 @@ export function HeroSection() {
 
         {/* RIGHT */}
         <div className="reveal">
-          {/* [REPLACE WITH REAL VIDEO EMBED — YouTube or Vimeo iframe, same dimensions] */}
-          <div className="w-full aspect-video bg-primary rounded-xl mb-5 flex flex-col items-center justify-center">
-            <button className="h-16 w-16 rounded-full bg-white flex items-center justify-center animate-pulse-slow" aria-label="Play video">
-              <Play size={20} className="fill-accent text-accent ml-1" />
-            </button>
-            <div className="text-white text-[15px] font-semibold mt-3">Company Overview</div>
-            <div className="text-accent text-[13px] mt-1">2 min watch</div>
+          <div className="w-full aspect-video bg-primary rounded-xl mb-5 overflow-hidden">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/PI4bxm5IYys?autoplay=1&mute=1&playsinline=1&rel=0"
+              title="Frigg Business Solutions Company Overview"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
 
           <div className="card-flat overflow-hidden">
