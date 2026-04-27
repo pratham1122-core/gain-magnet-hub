@@ -1,18 +1,35 @@
 import { useEffect, useState } from "react";
-import { X, Lock } from "lucide-react";
+import { Lock } from "lucide-react";
 
 const STORAGE_KEY = "frigg_popup_shown";
+
+/* [CONNECT FORM SUBMISSION TO GOOGLE SHEETS BEFORE LAUNCH]
+   Target sheet: https://docs.google.com/spreadsheets/d/17fVg7K1d3v3cb4s4sd_FOLWUW1kC9ZV2o2uhw-ADopY/edit
+
+   To wire this form to the Google Sheet, deploy a Google Apps Script Web App:
+   1. Open the sheet → Extensions → Apps Script
+   2. Paste:
+        function doPost(e) {
+          const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+          const data = JSON.parse(e.postData.contents);
+          sheet.appendRow([new Date(), data.name, data.email, data.company, data.whatsapp, data.challenge]);
+          return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
+        }
+   3. Deploy → New deployment → Web app → Execute as: Me, Access: Anyone
+   4. Copy the Web App URL and paste it below as SHEET_ENDPOINT.
+*/
+const SHEET_ENDPOINT = ""; // <-- PASTE GOOGLE APPS SCRIPT WEB APP URL HERE
 
 export function LeadPopup() {
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (sessionStorage.getItem(STORAGE_KEY)) return;
     const t = setTimeout(() => {
       setOpen(true);
-      sessionStorage.setItem(STORAGE_KEY, "true");
     }, 4000);
     return () => clearTimeout(t);
   }, []);
@@ -25,14 +42,44 @@ export function LeadPopup() {
     }, 200);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    /* [CONNECT FORM SUBMISSION TO REAL CRM OR EMAIL BEFORE LAUNCH — currently scrolls to Calendly on click] */
-    close();
-    setTimeout(() => {
-      const el = document.getElementById("contact");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 220);
+    if (submitting) return;
+    setSubmitting(true);
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const payload = {
+      name: String(fd.get("name") || ""),
+      email: String(fd.get("email") || ""),
+      company: String(fd.get("company") || ""),
+      whatsapp: String(fd.get("whatsapp") || ""),
+      challenge: String(fd.get("challenge") || ""),
+      submittedAt: new Date().toISOString(),
+    };
+
+    try {
+      if (SHEET_ENDPOINT) {
+        await fetch(SHEET_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      } else {
+        console.warn("[LeadPopup] SHEET_ENDPOINT not configured — submission not sent.", payload);
+      }
+    } catch (err) {
+      console.error("[LeadPopup] submission error", err);
+    } finally {
+      sessionStorage.setItem(STORAGE_KEY, "true");
+      setSubmitting(false);
+      close();
+      setTimeout(() => {
+        const el = document.getElementById("contact");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 220);
+    }
   };
 
   if (!open) return null;
@@ -41,7 +88,6 @@ export function LeadPopup() {
     <>
       <div
         className="frigg-overlay"
-        onClick={close}
         style={closing ? { opacity: 0, transition: "opacity 0.2s ease-in" } : undefined}
       />
       <div
@@ -60,16 +106,6 @@ export function LeadPopup() {
             : undefined
         }
       >
-        <button
-          type="button"
-          aria-label="Close"
-          onClick={close}
-          className="absolute top-4 right-4 h-8 w-8 rounded-full flex items-center justify-center hover:bg-border transition-colors"
-          style={{ backgroundColor: "var(--color-surface)" }}
-        >
-          <X size={14} style={{ color: "var(--color-muted-foreground)" }} />
-        </button>
-
         <div
           className="font-bold uppercase mb-3"
           style={{
@@ -106,10 +142,11 @@ export function LeadPopup() {
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-          <input type="text" required className="frigg-popup-input" placeholder="Full Name" />
-          <input type="email" required className="frigg-popup-input" placeholder="Business Email" />
-          <input type="text" required className="frigg-popup-input" placeholder="Company Name" />
-          <select required defaultValue="" className="frigg-popup-input appearance-none">
+          <input type="text" name="name" required maxLength={100} className="frigg-popup-input" placeholder="Full Name" />
+          <input type="email" name="email" required maxLength={255} className="frigg-popup-input" placeholder="Business Email" />
+          <input type="text" name="company" required maxLength={150} className="frigg-popup-input" placeholder="Company Name" />
+          <input type="tel" name="whatsapp" required maxLength={25} pattern="[0-9+\-\s()]{7,25}" className="frigg-popup-input" placeholder="WhatsApp Number (with country code)" />
+          <select name="challenge" required defaultValue="" className="frigg-popup-input appearance-none">
             <option value="" disabled>Select your biggest challenge...</option>
             <option>I don't know where to start</option>
             <option>Preparing for a PIPEDA or PHIPA audit</option>
@@ -121,18 +158,18 @@ export function LeadPopup() {
 
           <button
             type="submit"
-            className="btn-primary w-full mt-2"
-            style={{ height: 48, fontWeight: 700 }}
+            disabled={submitting}
+            className="btn-primary w-full mt-2 !text-[15px] sm:!text-[16px] !font-bold justify-center text-center"
+            style={{ minHeight: 52, fontWeight: 700, padding: "14px 20px", lineHeight: 1.2 }}
           >
-            Book My Free Assessment →
+            {submitting ? "Submitting..." : "Book My Free Assessment →"}
           </button>
         </form>
 
-        <div className="mt-3 text-center" style={{ fontSize: 12, color: "#94A3B8" }}>
-          <div>No commitment required. Cancel anytime.</div>
-          <div className="flex items-center justify-center gap-1 mt-1">
+        <div className="mt-3 text-center" style={{ fontSize: 12, color: "#94A3B8", lineHeight: 1.5 }}>
+          <div className="flex items-center justify-center gap-1">
             <Lock size={11} />
-            <span>Your information is never shared.</span>
+            <span>Your info is safe with us — we'll only use it to give you the best service possible.</span>
           </div>
         </div>
       </div>
