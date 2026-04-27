@@ -18,7 +18,7 @@ const STORAGE_KEY = "frigg_popup_shown";
    3. Deploy → New deployment → Web app → Execute as: Me, Access: Anyone
    4. Copy the Web App URL and paste it below as SHEET_ENDPOINT.
 */
-const SHEET_ENDPOINT = ""; // <-- PASTE GOOGLE APPS SCRIPT WEB APP URL HERE
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbzlW3AWGmy4HIw6fvIzA2XW6Wy4qhtfOskAvyqZj1ILkpvN5z4QnbteIyUjixRfeBpT/exec";
 
 export function LeadPopup() {
   const [open, setOpen] = useState(false);
