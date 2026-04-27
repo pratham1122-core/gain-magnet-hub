@@ -28,48 +28,48 @@ export function HeroSection() {
 
   return (
     <section id="top" className="bg-white with-header-offset">
-      <div className="max-w-7xl mx-auto px-4 pb-12 md:pb-20 grid lg:grid-cols-[55%_45%] gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 pb-10 md:pb-20 grid lg:grid-cols-[55%_45%] gap-6 lg:gap-12 items-center">
         {/* LEFT */}
         <div className="reveal">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {badges.map((b) => (
               <span key={b} className="badge-credential">{b}</span>
             ))}
           </div>
 
           {/* FIX 2 — H1 42px mobile / 68px desktop. FIX 4A — animated underline on "non-compliant". */}
-          <h1 className="text-[42px] md:text-[68px] font-bold text-primary mt-5 leading-[1.1]">
+          <h1 className="text-[32px] sm:text-[42px] md:text-[68px] font-bold text-primary mt-4 md:mt-5 leading-[1.1]">
             You might already be <span className="hl-word">Non-Compliant</span> in Canada.
           </h1>
 
-          <p className="text-[19px] text-muted-foreground mt-4 leading-relaxed">
+          <p className="text-[16px] md:text-[19px] text-muted-foreground mt-3 md:mt-4 leading-relaxed">
             Get your exact compliance risk across PIPEDA, AIDA, PHIPA, SOC 2, and ISO 27001 — and a clear action plan — before it costs you a deal, an audit, or a penalty.
           </p>
 
-          <div className="flex flex-wrap items-center gap-2 mt-5 text-[14px]">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-4 md:mt-5 text-[13px] md:text-[14px]">
             <div className="flex gap-[3px]">
               {[0,1,2,3,4].map((i) => (
-                <Star key={i} size={18} className="fill-accent text-accent" />
+                <Star key={i} size={16} className="fill-accent text-accent md:w-[18px] md:h-[18px]" />
               ))}
             </div>
             <span className="text-muted-foreground">Trusted by 15,000+ businesses globally</span>
-            <span className="text-muted-foreground">·</span>
+            <span className="text-muted-foreground hidden sm:inline">·</span>
             <span className="text-primary font-semibold">100% Audit Success Rate</span>
           </div>
 
           {/* FIX 4F — only this CTA pulses */}
-          <a href="#contact" className="btn-primary cta-pulse !text-[16px] !font-bold !px-8 !py-4 mt-6">
+          <a href="#contact" className="btn-primary cta-pulse !text-[15px] md:!text-[16px] !font-bold !px-6 md:!px-8 !py-3.5 md:!py-4 mt-5 md:mt-6 w-full sm:w-auto justify-center text-center">
             Book Your Free 30-Min Compliance Assessment
           </a>
-          <p className="text-[14px] italic text-muted-foreground mt-2.5">
+          <p className="text-[13px] md:text-[14px] italic text-muted-foreground mt-2.5">
             No commitment. No jargon. Walk away with clarity on where you stand.
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-2 mt-4">
+          <div className="grid sm:grid-cols-2 gap-1.5 md:gap-2 mt-4">
             {bullets.map((b) => (
               <div key={b} className="flex items-start gap-2">
                 <Check size={14} className="text-success mt-1 shrink-0" />
-                <span className="text-[14px] text-primary font-medium">{b}</span>
+                <span className="text-[13px] md:text-[14px] text-primary font-medium">{b}</span>
               </div>
             ))}
           </div>
@@ -77,7 +77,7 @@ export function HeroSection() {
 
         {/* RIGHT */}
         <div className="reveal">
-          <div className="w-full aspect-video bg-primary rounded-xl mb-5 overflow-hidden">
+          <div className="w-full aspect-video bg-primary rounded-xl mb-4 md:mb-5 overflow-hidden">
             <iframe
               className="w-full h-full"
               src="https://www.youtube.com/embed/PI4bxm5IYys?autoplay=1&mute=1&playsinline=1&rel=0"
@@ -88,22 +88,22 @@ export function HeroSection() {
           </div>
 
           <div className="card-flat overflow-hidden">
-            <div className="bg-primary px-5 py-4">
-              <div className="text-white text-[15px] font-bold">What You Get in Your Free Assessment</div>
+            <div className="bg-primary px-4 md:px-5 py-3 md:py-4">
+              <div className="text-white text-[14px] md:text-[15px] font-bold">What You Get in Your Free Assessment</div>
             </div>
-            <div className="p-5 bg-white">
-              <ul className="space-y-3">
+            <div className="p-4 md:p-5 bg-white">
+              <ul className="space-y-2.5 md:space-y-3">
                 {whatYouGet.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <Check size={16} className="text-accent mt-0.5 shrink-0" />
-                    <span className="text-[15px] text-primary leading-snug">{item}</span>
+                    <span className="text-[14px] md:text-[15px] text-primary leading-snug">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-surface px-5 py-4 border-t border-border">
-              <div className="text-[13px] text-muted-foreground">30-minute session. Available via video or phone.</div>
-              <a href="#contact" className="btn-primary w-full !text-[15px] mt-2.5">Schedule Now →</a>
+            <div className="bg-surface px-4 md:px-5 py-3 md:py-4 border-t border-border">
+              <div className="text-[12px] md:text-[13px] text-muted-foreground">30-minute session. Available via video or phone.</div>
+              <a href="#contact" className="btn-primary w-full !text-[14px] md:!text-[15px] mt-2.5 justify-center text-center">Schedule Now →</a>
             </div>
           </div>
         </div>
