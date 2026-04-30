@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Lock } from "lucide-react";
+import { Lock, X } from "lucide-react";
 
 const STORAGE_KEY = "frigg_popup_shown";
 
@@ -30,7 +30,7 @@ export function LeadPopup() {
     if (sessionStorage.getItem(STORAGE_KEY)) return;
     const t = setTimeout(() => {
       setOpen(true);
-    }, 4000);
+    }, 30000);
     return () => clearTimeout(t);
   }, []);
 
@@ -40,6 +40,11 @@ export function LeadPopup() {
       setOpen(false);
       setClosing(false);
     }, 200);
+  };
+
+  const dismiss = () => {
+    sessionStorage.setItem(STORAGE_KEY, "true");
+    close();
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -89,6 +94,7 @@ export function LeadPopup() {
       <div
         className="frigg-overlay"
         style={closing ? { opacity: 0, transition: "opacity 0.2s ease-in" } : undefined}
+        onClick={dismiss}
       />
       <div
         className="frigg-popup"
@@ -106,6 +112,16 @@ export function LeadPopup() {
             : undefined
         }
       >
+        <button
+          type="button"
+          aria-label="Close"
+          onClick={dismiss}
+          className="absolute top-3 right-3 p-1.5 rounded-full hover:bg-black/5 transition-colors"
+          style={{ color: "var(--color-muted-foreground)" }}
+        >
+          <X size={18} />
+        </button>
+
         <div
           className="font-bold uppercase mb-3"
           style={{
