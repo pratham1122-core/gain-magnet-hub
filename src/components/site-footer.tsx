@@ -38,19 +38,6 @@ export function SiteFooter() {
             <a href="#contact" className="btn-on-dark !py-3 !px-6 !text-[14px]">
               Book Free Assessment
             </a>
-            <div className="flex gap-3 mt-5">
-              {["LinkedIn", "Facebook", "Twitter", "Instagram", "YouTube"].map((s) => (
-                /* [ADD REAL SOCIAL MEDIA LINKS BEFORE LAUNCH] */
-                <a
-                  key={s}
-                  href="#"
-                  aria-label={s}
-                  className="h-8 w-8 rounded-full border border-white/20 bg-white/10 hover:bg-accent hover:border-accent flex items-center justify-center text-white text-[10px] font-bold transition-colors"
-                >
-                  {s[0]}
-                </a>
-              ))}
-            </div>
           </div>
         </div>
 
