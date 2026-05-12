@@ -48,6 +48,17 @@ export const Route = createRootRoute({
         href: appCss,
       },
     ],
+    scripts: [
+      { src: "https://www.googletagmanager.com/gtag/js?id=G-Z8YDMW000W", async: true },
+      {
+        children:
+          "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-Z8YDMW000W');",
+      },
+      {
+        children:
+          '_linkedin_partner_id = "9258236";window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];window._linkedin_data_partner_ids.push(_linkedin_partner_id);(function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s);})(window.lintrk);',
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -62,6 +73,15 @@ function RootShell({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            alt=""
+            src="https://px.ads.linkedin.com/collect/?pid=9258236&fmt=gif"
+          />
+        </noscript>
         <Scripts />
       </body>
     </html>
