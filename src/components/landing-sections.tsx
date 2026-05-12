@@ -682,7 +682,7 @@ export function FinalCtaSection() {
         <div className="bg-white rounded-xl overflow-hidden max-w-3xl mx-auto mt-8 border border-border">
           <iframe
             title="Schedule your free assessment"
-            src="https://calendly.com/friggbusinesssolutions/30min"
+            src="https://calendly.com/friggbusinesssolutions/linkedin"
             className="w-full"
             style={{ height: 700, border: 0 }}
             loading="lazy"
