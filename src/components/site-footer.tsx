@@ -12,7 +12,7 @@ export function SiteFooter() {
             </div>
             <p className="text-[13px] text-white/60 mt-3">Driving Perception To Conclusion</p>
             <div className="text-[13px] text-white/80 leading-[2] mt-4">
-              <div>+1 (905) 261-9123 (Canada)</div>
+              <div>+1 (905) 261-9123 (Canada and USA)</div>
               <div>+1 (866) 907-7227 (USA)</div>
               <div>service@friggp2c.com</div>
               <div>friggp2c.com</div>
@@ -42,7 +42,7 @@ export function SiteFooter() {
         </div>
 
         <div className="border-t border-white/10 mt-10 pt-5 flex flex-col md:flex-row justify-between gap-3 text-[12px] text-white/50">
-          <div>© 2025 Frigg Business Solutions. USA | Canada | India | UAE. All rights reserved.</div>
+          <div>© 2025 Frigg Business Solutions. USA | Canada and USA | India | UAE. All rights reserved.</div>
           <div className="flex gap-4">
             <a href="#" className="hover:text-accent">Privacy Policy</a>
             <a href="#" className="hover:text-accent">Terms of Service</a>
