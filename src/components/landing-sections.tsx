@@ -39,7 +39,7 @@ export function HeroSection() {
 
           {/* FIX 2 — H1 42px mobile / 68px desktop. FIX 4A — animated underline on "non-compliant". */}
           <h1 className="text-[32px] sm:text-[42px] md:text-[68px] font-bold text-primary mt-4 md:mt-5 leading-[1.1]">
-            You might already be <span className="hl-word">Non-Compliant</span> in Canada.
+            You might already be <span className="hl-word">Non-Compliant</span> in Canada and USA.
           </h1>
 
           <p className="text-[16px] md:text-[19px] text-muted-foreground mt-3 md:mt-4 leading-relaxed">
@@ -156,7 +156,7 @@ export function ProblemSection() {
   const problems = [
     { Icon: FileX, title: "Enterprise deals get blocked", body: "SOC 2 and ISO 27001 are now standard procurement requirements for enterprise, government, and financial services clients. Without documentation, you don't make the shortlist — regardless of how strong your product is." },
     { Icon: BellRing, title: "Privacy investigations triggered", body: "PIPEDA violations can result in OPC investigation notices, mandatory breach reporting, and fines up to CAD $100,000 per violation. The investigation process alone is costly, disruptive, and public." },
-    { Icon: Cpu, title: "AI products flagged under AIDA", body: "Canada's Artificial Intelligence and Data Act places high-impact AI systems under mandatory assessment obligations. Non-compliant systems face stop-orders and fines reaching CAD $25 million or 5% of global revenue." },
+    { Icon: Cpu, title: "AI products flagged under AIDA", body: "Canada and USA's Artificial Intelligence and Data Act places high-impact AI systems under mandatory assessment obligations. Non-compliant systems face stop-orders and fines reaching CAD $25 million or 5% of global revenue." },
     { Icon: ShieldOff, title: "Patient data exposed under PHIPA", body: "Ontario healthcare custodians face mandatory IPC breach notifications, formal investigations, and order-making powers. A single improper disclosure can trigger a review that disrupts your entire practice." },
   ];
 
@@ -166,7 +166,7 @@ export function ProblemSection() {
         <div className="reveal">
           <div className="section-label">THE RISK OF DOING NOTHING</div>
           <h2 className="text-[32px] md:text-[46px] font-bold text-primary mt-3">
-            What happens when compliance slips in Canada?
+            What happens when compliance slips in Canada and USA?
           </h2>
           <p className="text-[19px] text-muted-foreground mt-3 max-w-2xl">
             Most businesses don't realize their exposure until it arrives as a blocked deal, an investigation notice, or a headline.
@@ -327,7 +327,7 @@ const experts: Expert[] = [
     name: "Amit Sarkar",
     title: "Founder & Principal Consultant",
     badges: ["CISSP", "CISM", "ISO 27001 LA", "HIPAA", "Six Sigma"],
-    bio: "Former CEO of a US Healthcare Regulatory Compliance organization and senior global leader in HIPAA, IT Security, and Risk Management. Author of multiple articles published in HCCA and SCCE. Master Black Belt in Six Sigma from GE. 20+ years leading compliance programs across USA, Canada, India, and the Middle East.",
+    bio: "Former CEO of a US Healthcare Regulatory Compliance organization and senior global leader in HIPAA, IT Security, and Risk Management. Author of multiple articles published in HCCA and SCCE. Master Black Belt in Six Sigma from GE. 20+ years leading compliance programs across USA, Canada and USA, India, and the Middle East.",
     credentials: [
       "Published author — HCCA and SCCE",
       "7,000+ LinkedIn followers in compliance",

@@ -33,7 +33,7 @@ export function SiteNav() {
           <span className="hidden sm:inline">
             PIPEDA enforcement is active. AIDA is advancing. Canadian businesses face fines up to CAD $100,000 — without warning.
           </span>
-          <span className="sm:hidden">PIPEDA & AIDA enforcement is active in Canada.</span>
+          <span className="sm:hidden">PIPEDA & AIDA enforcement is active in Canada and USA.</span>
           <a href="#problem" className="text-accent hover:underline whitespace-nowrap">
             Learn more →
           </a>
