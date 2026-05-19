@@ -142,7 +142,7 @@ export function LeadPopup() {
             lineHeight: 1.25,
           }}
         >
-          Find out if your business is compliant in Canada and USA — in 30 minutes.
+          Find out if your business is compliant in USA and Canada — in 30 minutes.
         </h3>
         <style>{`@media (max-width: 480px) { #frigg-popup-title { font-size: 20px !important; } }`}</style>
 
