@@ -659,6 +659,18 @@ export function FinalCtaSection() {
     "Leave with a written action roadmap",
   ];
 
+  if (typeof window !== "undefined") {
+    // Calendly posts a message when an invitee schedules an event; redirect to thank-you.
+    (window as any).__friggCalendlyListener ||
+      window.addEventListener("message", (e: MessageEvent) => {
+        const d: any = e.data;
+        if (d && typeof d === "object" && typeof d.event === "string" && d.event === "calendly.event_scheduled") {
+          window.location.href = "/thank-you";
+        }
+      });
+    (window as any).__friggCalendlyListener = true;
+  }
+
   return (
     <section id="contact" className="bg-primary py-20">
       <div className="max-w-7xl mx-auto px-4 text-center">
