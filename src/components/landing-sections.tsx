@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Check, Star, Play, Phone, Mail, MessageCircle, FileX, BellRing, Cpu, ShieldOff, Quote, ArrowRight } from "lucide-react";
 import { CountUp } from "@/components/count-up";
 
@@ -658,6 +659,17 @@ export function FinalCtaSection() {
     "Understand which Canadian laws apply",
     "Leave with a written action roadmap",
   ];
+
+  useEffect(() => {
+    const onMsg = (e: MessageEvent) => {
+      const d: any = e.data;
+      if (d && typeof d === "object" && typeof d.event === "string" && d.event === "calendly.event_scheduled") {
+        window.location.href = "/thank-you";
+      }
+    };
+    window.addEventListener("message", onMsg);
+    return () => window.removeEventListener("message", onMsg);
+  }, []);
 
   return (
     <section id="contact" className="bg-primary py-20">
