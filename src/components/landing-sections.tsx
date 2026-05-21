@@ -679,7 +679,7 @@ export function FinalCtaSection() {
         </div>
 
         {/* [CRITICAL — REPLACE WITH REAL CALENDLY LINK BEFORE LAUNCH. THIS IS THE PRIMARY CONVERSION ELEMENT ON THE PAGE.] */}
-        <div className="bg-white rounded-xl overflow-hidden max-w-3xl mx-auto mt-8 border border-border">
+        <div id="booking" className="bg-white rounded-xl overflow-hidden max-w-3xl mx-auto mt-8 border border-border scroll-mt-24">
           <iframe
             title="Schedule your free assessment"
             src="https://calendly.com/friggbusinesssolutions/linkedin"
