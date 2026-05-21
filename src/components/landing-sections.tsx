@@ -80,7 +80,7 @@ export function HeroSection() {
           <div className="w-full aspect-video bg-primary rounded-xl mb-4 md:mb-5 overflow-hidden">
             <iframe
               className="w-full h-full"
-              src="https://www.youtube.com/embed/PI4bxm5IYys?autoplay=1&mute=1&playsinline=1&rel=0"
+              src="https://www.youtube.com/embed/JICjU9yUlaw?autoplay=1&mute=1&playsinline=1&rel=0"
               title="Frigg Business Solutions Company Overview"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
