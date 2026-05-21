@@ -660,17 +660,16 @@ export function FinalCtaSection() {
     "Leave with a written action roadmap",
   ];
 
-  if (typeof window !== "undefined") {
-    // Calendly posts a message when an invitee schedules an event; redirect to thank-you.
-    (window as any).__friggCalendlyListener ||
-      window.addEventListener("message", (e: MessageEvent) => {
-        const d: any = e.data;
-        if (d && typeof d === "object" && typeof d.event === "string" && d.event === "calendly.event_scheduled") {
-          window.location.href = "/thank-you";
-        }
-      });
-    (window as any).__friggCalendlyListener = true;
-  }
+  useEffect(() => {
+    const onMsg = (e: MessageEvent) => {
+      const d: any = e.data;
+      if (d && typeof d === "object" && typeof d.event === "string" && d.event === "calendly.event_scheduled") {
+        window.location.href = "/thank-you";
+      }
+    };
+    window.addEventListener("message", onMsg);
+    return () => window.removeEventListener("message", onMsg);
+  }, []);
 
   return (
     <section id="contact" className="bg-primary py-20">
