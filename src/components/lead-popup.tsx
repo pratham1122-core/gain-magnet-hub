@@ -81,8 +81,8 @@ export function LeadPopup() {
       setSubmitting(false);
       close();
       setTimeout(() => {
-        const el = document.getElementById("contact");
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+        const el = document.getElementById("booking") || document.getElementById("contact");
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 220);
     }
   };
