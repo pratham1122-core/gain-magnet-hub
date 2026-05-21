@@ -289,7 +289,7 @@ function StatsBlock() {
     <section className="ty-stats" ref={ref}>
       <div className="ty-stats-row">
         <div className="ty-stat"><div className="ty-num-big"><CountUp end={15000} suffix="+" start={on} /></div><div className="ty-stat-label">Businesses Supported Globally</div></div>
-        <div className="ty-stat"><div className="ty-num-big"><CountUp end={25} suffix="+" start={on} /></div><div className="ty-stat-label">Years Combined Experience</div></div>
+        <div className="ty-stat"><div className="ty-num-big"><CountUp end={25} suffix="+" start={on} /></div><div className="ty-stat-label">Years Experience</div></div>
         <div className="ty-stat"><div className="ty-num-big"><CountUp end={100} suffix="%" start={on} /></div><div className="ty-stat-label">First-Attempt Audit Success Rate</div></div>
         <div className="ty-stat"><div className="ty-num-big">5x–12x</div><div className="ty-stat-label">Average Client ROI</div></div>
       </div>
