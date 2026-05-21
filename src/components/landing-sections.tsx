@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Check, Star, Play, Phone, Mail, MessageCircle, FileX, BellRing, Cpu, ShieldOff, Quote, ArrowRight } from "lucide-react";
 import { CountUp } from "@/components/count-up";
 
