@@ -662,6 +662,7 @@ export function FinalCtaSection() {
 
   useEffect(() => {
     const onMsg = (e: MessageEvent) => {
+      if (typeof e.origin === "string" && !e.origin.includes("calendly.com")) return;
       const d: any = e.data;
       if (d && typeof d === "object" && typeof d.event === "string" && d.event === "calendly.event_scheduled") {
         window.location.href = "/thank-you";
@@ -670,6 +671,11 @@ export function FinalCtaSection() {
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
   }, []);
+
+  const calendlySrc =
+    "https://calendly.com/friggbusinesssolutions/30min?embed_domain=" +
+    (typeof window !== "undefined" ? window.location.hostname : "friggp2c.com") +
+    "&embed_type=Inline";
 
   return (
     <section id="contact" className="bg-primary py-20">
@@ -694,7 +700,7 @@ export function FinalCtaSection() {
         <div id="booking" className="bg-white rounded-xl overflow-hidden max-w-3xl mx-auto mt-8 border border-border scroll-mt-24">
           <iframe
             title="Schedule your free assessment"
-            src="https://calendly.com/friggbusinesssolutions/30min"
+            src={calendlySrc}
             className="w-full"
             style={{ height: 700, border: 0 }}
             loading="lazy"
