@@ -174,35 +174,7 @@ export function HeroSection() {
 
         {/* RIGHT */}
         <div className="reveal">
-          <div className="w-full aspect-video bg-primary rounded-xl mb-4 md:mb-5 overflow-hidden">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/JICjU9yUlaw?autoplay=1&mute=1&playsinline=1&rel=0"
-              title="Frigg Business Solutions Company Overview"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
-
-          <div className="card-flat overflow-hidden">
-            <div className="bg-primary px-4 md:px-5 py-3 md:py-4">
-              <div className="text-white text-[14px] md:text-[15px] font-bold">What You Get in Your Free Assessment</div>
-            </div>
-            <div className="p-4 md:p-5 bg-white">
-              <ul className="space-y-2.5 md:space-y-3">
-                {whatYouGet.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <Check size={16} className="text-accent mt-0.5 shrink-0" />
-                    <span className="text-[14px] md:text-[15px] text-primary leading-snug">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-surface px-4 md:px-5 py-3 md:py-4 border-t border-border">
-              <div className="text-[12px] md:text-[13px] text-muted-foreground">30-minute session. Available via video or phone.</div>
-              <a href="#contact" className="btn-primary w-full !text-[14px] md:!text-[15px] mt-2.5 justify-center text-center">Schedule Now →</a>
-            </div>
-          </div>
+          <HeroLeadForm />
         </div>
       </div>
     </section>
