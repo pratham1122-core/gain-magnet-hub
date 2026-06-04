@@ -114,15 +114,6 @@ export function HeroSection() {
     "Instant clarity on your compliance gaps",
     "Includes a prioritized action roadmap",
   ];
-  const whatYouGet = [
-    "Full compliance gap analysis (PIPEDA, AIDA, PHIPA, SOC 2, ISO 27001)",
-    "Identification of which laws apply to your business",
-    "Prioritized risk ranking — what to fix first",
-    "Realistic timeline and effort estimate",
-    "Framework recommendation (project, retainer, or combo)",
-    "No-obligation written summary sent after the call",
-  ];
-
   return (
     <section id="top" className="bg-white with-header-offset">
       <div className="max-w-7xl mx-auto px-4 pb-10 md:pb-20 grid lg:grid-cols-[55%_45%] gap-6 lg:gap-12 items-center">
