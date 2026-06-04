@@ -18,6 +18,7 @@ import {
   CtaStrip3,
   PricingSection,
   FinalCtaSection,
+  VideoSection,
 } from "@/components/landing-sections";
 
 const META_TITLE =
@@ -61,6 +62,7 @@ function Index() {
       <main>
         <HeroSection />
         <TrustBar />
+        <VideoSection />
         <SectionDivider />
         <ProblemSection />
         <CtaStrip1 />

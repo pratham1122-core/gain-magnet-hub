@@ -1,8 +1,104 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Check, Star, Play, Phone, Mail, MessageCircle, FileX, BellRing, Cpu, ShieldOff, Quote, ArrowRight } from "lucide-react";
 import { CountUp } from "@/components/count-up";
 
 const PHOTO_FALLBACK_BG = "var(--color-primary)";
+
+const HERO_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzlW3AWGmy4HIw6fvIzA2XW6Wy4qhtfOskAvyqZj1ILkpvN5z4QnbteIyUjixRfeBpT/exec";
+
+function HeroLeadForm() {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    const fd = new FormData(e.currentTarget);
+    const payload = {
+      name: String(fd.get("name") || ""),
+      email: String(fd.get("email") || ""),
+      company: String(fd.get("company") || ""),
+      whatsapp: String(fd.get("whatsapp") || ""),
+      challenge: String(fd.get("challenge") || ""),
+      source: "hero_form",
+      submittedAt: new Date().toISOString(),
+    };
+    try {
+      await fetch(HERO_FORM_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.error("[HeroLeadForm] submission error", err);
+    } finally {
+      window.location.href = "/thank-you";
+    }
+  };
+
+  return (
+    <div className="card-flat overflow-hidden bg-white">
+      <div className="bg-primary px-5 py-4">
+        <div className="text-white text-[15px] md:text-[16px] font-bold">Book Your Free 30-Min Assessment</div>
+        <div className="text-white/70 text-[12px] md:text-[13px] mt-0.5">No commitment. Instant clarity on your compliance gaps.</div>
+      </div>
+      <form onSubmit={handleSubmit} className="p-5 flex flex-col gap-3">
+        <input type="text" name="name" required maxLength={100} className="frigg-popup-input" placeholder="Full Name" />
+        <input type="email" name="email" required maxLength={255} className="frigg-popup-input" placeholder="Business Email" />
+        <input type="text" name="company" required maxLength={150} className="frigg-popup-input" placeholder="Company Name" />
+        <input type="tel" name="whatsapp" required maxLength={25} pattern="[0-9+\-\s()]{7,25}" className="frigg-popup-input" placeholder="WhatsApp Number (with country code)" />
+        <select name="challenge" required defaultValue="" className="frigg-popup-input appearance-none">
+          <option value="" disabled>Select your biggest challenge...</option>
+          <option>I don't know where to start</option>
+          <option>Preparing for a PIPEDA or PHIPA audit</option>
+          <option>SOC 2 or ISO 27001 certification</option>
+          <option>AIDA — AI compliance requirements</option>
+          <option>Multi-framework compliance</option>
+          <option>Urgent regulatory deadline</option>
+        </select>
+        <button
+          type="submit"
+          disabled={submitting}
+          className="btn-primary w-full mt-1 !text-[15px] sm:!text-[16px] !font-bold justify-center text-center"
+          style={{ minHeight: 52, fontWeight: 700, padding: "14px 20px", lineHeight: 1.2 }}
+        >
+          {submitting ? "Submitting..." : "Book My Free Assessment →"}
+        </button>
+        <p className="text-[12px] text-muted-foreground text-center mt-1">
+          Your info is safe with us — we'll only use it to give you the best service possible.
+        </p>
+      </form>
+    </div>
+  );
+}
+
+export function VideoSection() {
+  return (
+    <section id="overview-video" className="bg-surface py-16 md:py-20">
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="reveal text-center">
+          <div className="section-label">WATCH THE OVERVIEW</div>
+          <h2 className="text-[28px] md:text-[40px] font-bold text-primary mt-3">
+            See how Frigg helps you stay compliant — in 2 minutes.
+          </h2>
+          <p className="text-[16px] md:text-[18px] text-muted-foreground mt-3 max-w-2xl mx-auto">
+            A short walkthrough of how we map your compliance posture across PIPEDA, AIDA, PHIPA, SOC 2, and ISO 27001.
+          </p>
+        </div>
+        <div className="reveal mt-8 w-full aspect-video bg-primary rounded-xl overflow-hidden border border-border">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/JICjU9yUlaw?rel=0"
+            title="Frigg Business Solutions Company Overview"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /* ─────────────────────────── HERO ─────────────────────────── */
 export function HeroSection() {
@@ -18,15 +114,6 @@ export function HeroSection() {
     "Instant clarity on your compliance gaps",
     "Includes a prioritized action roadmap",
   ];
-  const whatYouGet = [
-    "Full compliance gap analysis (PIPEDA, AIDA, PHIPA, SOC 2, ISO 27001)",
-    "Identification of which laws apply to your business",
-    "Prioritized risk ranking — what to fix first",
-    "Realistic timeline and effort estimate",
-    "Framework recommendation (project, retainer, or combo)",
-    "No-obligation written summary sent after the call",
-  ];
-
   return (
     <section id="top" className="bg-white with-header-offset">
       <div className="max-w-7xl mx-auto px-4 pb-10 md:pb-20 grid lg:grid-cols-[55%_45%] gap-6 lg:gap-12 items-center">
@@ -78,35 +165,7 @@ export function HeroSection() {
 
         {/* RIGHT */}
         <div className="reveal">
-          <div className="w-full aspect-video bg-primary rounded-xl mb-4 md:mb-5 overflow-hidden">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/JICjU9yUlaw?autoplay=1&mute=1&playsinline=1&rel=0"
-              title="Frigg Business Solutions Company Overview"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
-
-          <div className="card-flat overflow-hidden">
-            <div className="bg-primary px-4 md:px-5 py-3 md:py-4">
-              <div className="text-white text-[14px] md:text-[15px] font-bold">What You Get in Your Free Assessment</div>
-            </div>
-            <div className="p-4 md:p-5 bg-white">
-              <ul className="space-y-2.5 md:space-y-3">
-                {whatYouGet.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <Check size={16} className="text-accent mt-0.5 shrink-0" />
-                    <span className="text-[14px] md:text-[15px] text-primary leading-snug">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-surface px-4 md:px-5 py-3 md:py-4 border-t border-border">
-              <div className="text-[12px] md:text-[13px] text-muted-foreground">30-minute session. Available via video or phone.</div>
-              <a href="#contact" className="btn-primary w-full !text-[14px] md:!text-[15px] mt-2.5 justify-center text-center">Schedule Now →</a>
-            </div>
-          </div>
+          <HeroLeadForm />
         </div>
       </div>
     </section>
